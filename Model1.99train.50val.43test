@@ -1,0 +1,29 @@
+# 99% train - 50% val
+
+# 3. Define Simple Neural Network Architecture
+model = models.Sequential([
+    # Input layer and first Convolution block
+    layers.Conv2D(32, (3, 3), activation='relu', input_shape=(128, 128, 3)),
+    layers.MaxPooling2D((2, 2)),
+
+    # Second Convolution block
+    layers.Conv2D(64, (3, 3), activation='relu'),
+    layers.MaxPooling2D((2, 2)),
+
+    # Flatten 2D matrices to a 1D vector
+    layers.Flatten(),
+
+    # Dense/Fully Connected Layers
+    layers.Dense(64, activation='relu'),
+    layers.Dense(num_classes, activation='softmax')  # Output layer
+])
+
+# 4. Compile Model
+model.compile(
+    optimizer='adam',
+    loss='categorical_crossentropy',
+    metrics=['accuracy']
+)
+
+# Print structure
+model.summary()
